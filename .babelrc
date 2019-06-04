@@ -1,6 +1,15 @@
 {
-  "presets": ["env"],
+  "presets": [
+    [
+      "env",
+      {
+        "targets": {
+          "node": "current"
+        }
+      }
+    ]
+  ],
   "sourceMaps": "inline",
   "retainLines": true,
-  "plugins": ["transform-object-rest-spread"]
+  "plugins": ["transform-object-rest-spread", "transform-runtime"]
 }
