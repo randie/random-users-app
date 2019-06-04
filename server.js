@@ -1,5 +1,9 @@
-import { ApolloServer, gql } from 'apollo-server';
-import { RESTDataSource } from 'apollo-datasource-rest';
+const { ApolloServer, gql } = require('apollo-server');
+const { RESTDataSource } = require('apollo-datasource-rest');
+
+// NOTE: Can only be used with babel-node or node v12+
+//import { ApolloServer, gql } from 'apollo-server';
+//import { RESTDataSource } from 'apollo-datasource-rest';
 
 const typeDefs = gql`
   type User {
@@ -64,6 +68,8 @@ const server = new ApolloServer({
   dataSources: () => ({
     randomUser: new RandomUser(),
   }),
+  playground: true,
+  introspection: true,
 });
 
 server.listen().then(({ url }) => console.log(`Server is listening on ${url}`));
