@@ -1,7 +1,3 @@
-//const { ApolloServer, gql } = require('apollo-server');
-//const { RESTDataSource } = require('apollo-datasource-rest');
-
-// NOTE: Can only be used with babel-node or node v12+
 import { ApolloServer, gql } from 'apollo-server';
 import { RESTDataSource } from 'apollo-datasource-rest';
 
