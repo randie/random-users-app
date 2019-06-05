@@ -9,7 +9,8 @@ import Typography from '@material-ui/core/Typography';
 
 import './index.css';
 
-const graphqlEndpoint = 'https://random-users-app-4v76q80kc.now.sh/graphql';
+const graphqlEndpoint =
+  process.env.NODE_ENV === 'production' ? '/graphql' : 'http://localhost:4000/graphql';
 
 const usersQuery = `
 {
@@ -37,15 +38,25 @@ function Loading() {
   );
 }
 
+const cardStyle = {
+  display: 'flex',
+  alignItems: 'center',
+  marginBottom: '0.5rem',
+  paddingLeft: '1rem',
+  maxWidth: '550px',
+  margin: '0.5rem auto',
+};
+
+const cardMediaStyle = {
+  height: 50,
+  width: 50,
+  borderRadius: '50%',
+};
+
 function User({ user }) {
   return (
-    <Card
-      style={{ display: 'flex', alignItems: 'center', marginBottom: '0.5rem', paddingLeft: '1rem' }}
-    >
-      <CardMedia
-        image={user.picture.thumbnail}
-        style={{ height: 50, width: 50, borderRadius: '50%' }}
-      />
+    <Card style={cardStyle}>
+      <CardMedia image={user.picture.thumbnail} style={cardMediaStyle} />
       <CardContent>
         <Typography component="h5" variant="h5">
           {user.name.first} {user.name.last}
