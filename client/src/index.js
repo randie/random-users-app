@@ -2,10 +2,14 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { request } from 'graphql-request';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
+import CardMedia from '@material-ui/core/CardMedia';
+import Typography from '@material-ui/core/Typography';
 
 import './index.css';
 
-const graphqlEndpoint = 'https://random-users-app.randie.now.sh';
+const graphqlEndpoint = 'https://random-users-app-m6p2th129.now.sh';
 
 const usersQuery = `
 {
@@ -33,8 +37,29 @@ function Loading() {
   );
 }
 
+function User({ user }) {
+  return (
+    <Card
+      style={{ display: 'flex', alignItems: 'center', marginBottom: '0.5rem', paddingLeft: '1rem' }}
+    >
+      <CardMedia
+        image={user.picture.thumbnail}
+        style={{ height: 50, width: 50, borderRadius: '50%' }}
+      />
+      <CardContent>
+        <Typography component="h5" variant="h5">
+          {user.name.first} {user.name.last}
+        </Typography>
+        <Typography variant="subtitle1">
+          {user.email} &bull; {user.phone}
+        </Typography>
+      </CardContent>
+    </Card>
+  );
+}
+
 function App() {
-  const [users, setUsers] = React.useState(null);
+  const [users, setUsers] = React.useState([]);
 
   React.useEffect(() => {
     getUsers();
@@ -42,10 +67,14 @@ function App() {
 
   const getUsers = async () => {
     const response = await request(graphqlEndpoint, usersQuery);
-    setUsers(response);
+    setUsers(response.users);
   };
 
-  return !users ? <Loading /> : <div>Users</div>;
+  return users.length === 0 ? (
+    <Loading />
+  ) : (
+    users.map(user => <User user={user} key={user.email} />)
+  );
 }
 
 ReactDOM.render(<App />, document.getElementById('root'));
