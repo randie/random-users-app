@@ -9,7 +9,7 @@ import Typography from '@material-ui/core/Typography';
 
 import './index.css';
 
-const graphqlEndpoint = 'https://random-users-app-m6p2th129.now.sh';
+const graphqlEndpoint = 'https://random-users-app-4v76q80kc.now.sh/graphql';
 
 const usersQuery = `
 {
