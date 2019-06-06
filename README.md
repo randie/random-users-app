@@ -1,13 +1,15 @@
 # random-users-app
 
-> **Note:** This is a learn-by-doing project, experimenting with how to deploy a React app and a GraphQL API server to Zeit's now.sh.
+> **Note:** This was a learn-by-doing project to experiment with deploying a React app and a GraphQL API server to Zeit's now.sh.
 
-This toy web app consists of 2 parts:
+## Synopsis
 
-- a GraphQL API server that provides 2 queries: `user` and `users`. It uses [randomuser.me](https://randomuser.me/) to generate random users.
-- a React client that makes 1 request to the GraphQL server for 10 random users and renders the returned list of users.
+This toy web app consists of a server and a client, both of which are deployed to the same domain on now.sh.
 
-**Demo**
+- The GraphQL API server provides 2 queries: `user` and `users`. It uses [randomuser.me](https://randomuser.me/) to generate random users.
+- The React client makes 1 request to the GraphQL API server for 10 random users and renders the returned list of users.
 
-- server: https://random-users-app-4v76q80kc.now.sh/graphql
-- client: https://random-users-app-4v76q80kc.now.sh
+## Live Demo
+
+- server: https://random-users-app-6w60m0rex.now.sh/graphql
+- client: https://random-users-app-6w60m0rex.now.sh/
